@@ -65,7 +65,7 @@ pygame.display.set_caption("3단계: Ball 반사와 충돌")
 clock = pygame.time.Clock()
 
 ball = Ball()
-# 이번 단계에서는 패들 대신 고정된 Rect 두 개로 충돌만 확인 (W/S, ↑/↓ 로 움직이기)
+# 이번 단계에서는 Paddle 클래스 대신 Rect 두 개로 충돌만 확인 (W/S, ↑/↓ 로 움직일 수 있음)
 left = pygame.Rect(30, 205, 14, 90)
 right = pygame.Rect(756, 205, 14, 90)
 

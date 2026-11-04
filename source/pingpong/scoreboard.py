@@ -85,6 +85,9 @@ class Scoreboard:
         )
 
         # 3) 조작법 안내를 회색 작은 글씨로 가운데(위에서 80픽셀)에 표시해요.
+        #    ↑ ↓ 화살표는 키보드에 없는 특수 문자예요.
+        #    윈도우: 한글 상태에서 ㅁ + [한자] 키 → 목록에서 선택 / 맥: Control + Command + Space
+        #    또는 유니코드 "\u2191"(↑), "\u2193"(↓) 로 써도 같아요.
         hint = self.info_font.render("왼쪽: W / S    오른쪽: ↑ / ↓    재시작: R", True, GRAY)
         screen.blit(hint, (SCREEN_WIDTH // 2 - hint.get_width() // 2, 80))
 

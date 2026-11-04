@@ -28,6 +28,10 @@ def show(word, guessed, lives):
     # 예) word="python", guessed=['p','o'] → "p _ _ _ o _"
     board = " ".join(ch if ch in guessed else "_" for ch in word)
     # 문자열 * 정수 → 반복. '♥' * 4 → '♥♥♥♥'
+    # ♥(검은 하트)·♡(흰 하트) 입력 방법
+    #   - 윈도우: 한글 입력 상태에서 ㅁ 을 치고 [한자] 키 → Tab 으로 목록 펼치기 → ♥, ♡ 선택
+    #   - 맥: Control + Command + Space → 문자 뷰어에서 '하트' 검색
+    #   - 어디서나: 유니코드로 '\u2665'(♥), '\u2661'(♡) 라고 써도 똑같이 출력돼요.
     print(f"\n{board}   목숨: {'♥' * lives}{'♡' * (6 - lives)}   사용: {' '.join(guessed)}")
 
 
@@ -35,8 +39,10 @@ def ask_letter(guessed):
     """알파벳 한 글자이고, 아직 쓰지 않은 글자일 때만 돌려준다"""
     while True:
         ch = input("알파벳 한 글자 > ").lower()       # 대문자로 입력해도 소문자로 통일
-        # 세 가지 중 하나라도 해당하면(or) 다시 입력: 길이가 1이 아님 / 알파벳이 아님 / 이미 씀
-        if len(ch) != 1 or not ch.isalpha() or ch in guessed:
+        # 세 가지 중 하나라도 해당하면(or) 다시 입력: 길이가 1이 아님 / 영어 알파벳이 아님 / 이미 씀
+        # isalpha()는 한글('ㅁ')도 True 라서 isascii()와 함께 검사해야 영어 알파벳만 받아요.
+        #   (한글 자판 상태에서 a 를 누르면 'ㅁ'이 입력돼요!)
+        if len(ch) != 1 or not (ch.isascii() and ch.isalpha()) or ch in guessed:
             print("알파벳 한 글자만, 이미 쓴 글자는 안 돼요!")
         else:
             return ch
