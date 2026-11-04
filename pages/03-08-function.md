@@ -89,6 +89,206 @@ tries = play()       # 결과는 return 으로 받아 온다
 # print(secret)      # 오류! secret 은 play 밖에서는 없다
 ```
 
+## 코드 흐름 따라가기
+
+프로그램을 실행하면 아래 순서로 함수가 호출되고 값이 오갑니다. 전체 코드를 옆에 띄워 놓고 한 줄씩 따라가 보세요.
+
+| 순서 | 실행되는 곳 | 하는 일 |
+| --- | --- | --- |
+| 1 | 맨 아래 `if __name__ == "__main__":` | 파일을 직접 실행했으므로 `main()`을 호출한다. |
+| 2 | `main()` | 제목을 출력하고 `best = 0`(최고 기록 없음)으로 시작해 `while True`로 여러 판을 반복한다. |
+| 3 | `main()` → `play()` | 한 판 시작. `secret`(정답), `low`·`high`(범위), `history`(기록)를 준비한다. |
+| 4 | `play()` → `read_number(low, high, chance)` | 숫자가 들어올 때까지 다시 묻고, 정수를 **돌려받는다(return)**. `abc`처럼 잘못 넣으면 기회가 줄지 않는다. |
+| 5 | `play()` → `judge(guess, secret)` | 판정 결과 `"correct"`/`"up"`/`"down"` 중 하나를 돌려받는다. |
+| 6 | `play()` | `"correct"`이면 `return len(history)`로 시도 횟수를 돌려주며 함수가 끝난다. `"up"`/`"down"`이면 범위를 좁히고 다음 기회로 넘어간다. 7번 모두 틀리면 `return 0`. |
+| 7 | `main()` | 돌려받은 `tries`로 최고 기록을 갱신하고, "또 할까요?"에 `y`가 아니면 `break`로 끝낸다. |
+
+```text
+main()
+ └─ play()                     ← 한 판 (맞힌 횟수 반환)
+     ├─ read_number(...)       ← 올바른 정수 반환
+     └─ judge(guess, secret)   ← "correct" / "up" / "down" 반환
+```
+
+함수마다 **받는 값**(매개변수)과 **돌려주는 값**(반환값)이 정해져 있어서, 함수끼리는 이 값만 주고받습니다. 그래서 `judge()`만 따로 떼어 시험해 볼 수도 있습니다.
+
+## 실행 예시
+
+`05_updown_func.py`를 실행했을 때의 화면입니다. `>` 뒤의 글자가 키보드로 입력한 값입니다. (무작위 값이 있어 실행할 때마다 결과가 달라집니다.)
+
+```text
+=== 업다운 === 1~100 사이의 숫자를 7번 안에 맞히세요!
+[1~100] 남은 기회 7회 > abc
+숫자를 입력하세요!
+[1~100] 남은 기회 7회 > 50
+DOWN! 더 작은 수예요.
+[1~49] 남은 기회 6회 > 25
+UP! 더 큰 수예요.
+[26~49] 남은 기회 5회 > 37
+UP! 더 큰 수예요.
+[38~49] 남은 기회 4회 > 43
+DOWN! 더 작은 수예요.
+[38~42] 남은 기회 3회 > 40
+UP! 더 큰 수예요.
+[41~42] 남은 기회 2회 > 41
+UP! 더 큰 수예요.
+[42~42] 남은 기회 1회 > 42
+정답! 7번 만에 맞혔어요. 기록: [50, 25, 37, 43, 40, 41, 42]
+최고 기록: 7번
+또 할까요? (y/n) > n
+```
+
+## 전체 코드
+
+지금까지 조각으로 살펴본 코드를 하나로 합친 **전체 프로그램**입니다. 아래 순서로 바로 실행할 수 있습니다.
+
+1. 코드 블록 전체를 복사합니다. (위키독스 코드 블록 오른쪽 위 복사 버튼 또는 드래그 후 Ctrl + C)
+2. IDLE에서 **File → New File**을 열고 붙여 넣습니다. (Ctrl + V)
+3. 아래 파일 이름으로 저장한 뒤 **F5**로 실행합니다. (VS Code는 ▶ 실행 버튼)
+
+### 05_updown_func.py
+
+```python
+"""업다운 게임 (함수 버전) - 8차시: 함수 정의·호출, 매개변수, 반환값, main() 구조
+
+실행 방법: python 05_updown_func.py
+"""
+
+# =====================================================================
+# 01_updown_basic.py 와 무엇이 달라졌을까요?
+# ---------------------------------------------------------------------
+# 같은 게임을 "기능별 함수"로 나누었어요. (문제 분해 → 함수 하나 = 작은 문제 하나)
+#
+#   read_number(low, high, chance) : 숫자가 들어올 때까지 다시 묻고 정수로 돌려줌
+#   judge(guess, secret)           : "correct" / "up" / "down" 판정 결과를 돌려줌
+#   play()                         : 한 판 진행, 맞힌 횟수(실패 시 0)를 돌려줌
+#   main()                         : 여러 판 반복 + 최고 기록 관리
+#
+# 함수로 나누면 좋은 점
+#   1) 이름만 봐도 무슨 일을 하는지 알 수 있어요. (가독성)
+#   2) judge() 처럼 작은 함수는 따로 테스트하기 쉬워요. (테스트 용이성)
+#   3) 같은 코드를 여러 번 쓰지 않아도 돼요. (재사용)
+# =====================================================================
+
+import random
+
+MAX_CHANCE = 7          # 대문자 이름 = 바뀌지 않는 값(상수)이라는 약속
+
+def read_number(low, high, chance):
+    """숫자가 입력될 때까지 다시 물어보고, 정수로 바꿔 돌려준다"""
+    # low, high, chance 는 "매개변수": 함수를 부를 때 넘겨받는 값이에요.
+    while True:
+        text = input(f"[{low}~{high}] 남은 기회 {chance}회 > ")
+        if text.isdigit():
+            return int(text)        # return: 값을 돌려주고 함수를 즉시 끝냄 (반복도 끝!)
+        print("숫자를 입력하세요!")
+
+def judge(guess, secret):
+    """'correct' / 'up' / 'down' 중 하나를 돌려준다"""
+    if guess == secret:
+        return "correct"
+    # 조건 표현식으로 두 경우를 한 줄에
+    return "up" if guess < secret else "down"
+
+def play():
+    """한 판을 진행하고, 맞힌 횟수를 돌려준다 (실패하면 0)"""
+    secret = random.randint(1, 100)
+    low, high, history = 1, 100, []
+
+    # range(7, 0, -1) → 7, 6, 5, 4, 3, 2, 1  (시작, 끝(포함 안 함), 간격)
+    for chance in range(MAX_CHANCE, 0, -1):
+        guess = read_number(low, high, chance)    # 함수 호출 → 돌려받은 값을 guess 에 저장
+        history.append(guess)
+        result = judge(guess, secret)
+        if result == "correct":
+            print(f"정답! {len(history)}번 만에 맞혔어요. 기록: {history}")
+            return len(history)
+        if result == "up":
+            print("UP! 더 큰 수예요.")
+            low = max(low, guess + 1)       # 범위를 좁혀 간다
+        else:
+            print("DOWN! 더 작은 수예요.")
+            high = min(high, guess - 1)
+    print(f"실패! 정답은 {secret}, 기록: {history}")
+    return 0
+
+def main():
+    print("=== 업다운 === 1~100 사이의 숫자를 7번 안에 맞히세요!")
+    best = 0                                # 가장 적은 시도 횟수 기록 (0 = 아직 기록 없음)
+    while True:
+        tries = play()
+        # tries 가 0이 아니고(성공), 처음 기록이거나 더 적은 횟수면 최고 기록 갱신
+        if tries and (best == 0 or tries < best):
+            best = tries
+        print(f"최고 기록: {best}번" if best else "아직 성공 기록이 없어요.")
+        if input("또 할까요? (y/n) > ") != "y":
+            break
+
+# 이 파일을 직접 실행할 때만 main() 을 호출 (다른 파일에서 import 할 때는 실행 안 됨)
+if __name__ == "__main__":
+    main()
+```
+
+파일 받기: [05_updown_func.py 보기](https://github.com/nabilera1/python_lecture_game_pingpong/blob/main/source/text_games/05_updown_func.py) · [내려받기(Raw)](https://raw.githubusercontent.com/nabilera1/python_lecture_game_pingpong/main/source/text_games/05_updown_func.py)
+
+### 07_memory_func.py
+
+```python
+"""기억력 게임 (함수 버전) - 8차시 추가 예제: 매개변수 기본값, 반환값, main() 구조
+
+실행 방법: python 07_memory_func.py
+"""
+
+# =====================================================================
+#   show_sequence(seq, base=1.0) : 숫자를 보여 주고 지움 (base 를 안 주면 1.0초 사용)
+#   ask_sequence()               : 입력을 글자 리스트로 바꿔 돌려줌
+#   play()                       : 한 판 진행 → 성공 라운드 수 반환
+#   main()                       : 여러 판 반복 + 최고 기록
+# =====================================================================
+
+import random
+import time
+
+def show_sequence(seq, base=1.0):
+    """숫자를 잠깐 보여 준 뒤 화면을 지운다 (숫자가 많을수록 오래 보여 줌)"""
+    # base=1.0 : "기본값이 있는 매개변수". show_sequence(seq) 처럼 생략 가능
+    print(f"\n[{len(seq)}라운드] 기억하세요:", " ".join(seq))
+    time.sleep(base + len(seq) * 0.5)
+    print("\n" * 40)
+
+def ask_sequence():
+    """입력한 글자를 한 글자씩 나눈 리스트로 돌려준다"""
+    text = input("방금 본 숫자를 붙여서 입력 > ")
+    return list(text.replace(" ", ""))
+
+def play():
+    """한 판을 진행하고, 성공한 라운드 수를 돌려준다"""
+    seq, level = [], 0
+    while True:
+        seq.append(random.choice("123456789"))
+        show_sequence(seq)
+        if ask_sequence() != seq:               # 리스트끼리 비교
+            print("틀렸어요! 정답은", "".join(seq))
+            return level                        # return 이 무한 반복을 끝내는 출구
+        level += 1
+        print("정답! 다음 라운드로!")
+
+def main():
+    print("=== 기억력 게임 === 화면에 나온 숫자를 기억해서 입력하세요!")
+    best = 0
+    while True:
+        level = play()
+        best = max(best, level)                 # 최고 기록 = 지금까지 중 가장 큰 값
+        print(f"이번 기록: {level}라운드 / 최고 기록: {best}라운드")
+        if input("또 할까요? (y/n) > ") != "y":
+            break
+
+if __name__ == "__main__":
+    main()
+```
+
+파일 받기: [07_memory_func.py 보기](https://github.com/nabilera1/python_lecture_game_pingpong/blob/main/source/text_games/07_memory_func.py) · [내려받기(Raw)](https://raw.githubusercontent.com/nabilera1/python_lecture_game_pingpong/main/source/text_games/07_memory_func.py)
+
 ## 실습 활동
 
 1. `05_updown_func.py`의 `judge()`만 따로 호출해 보세요. `judge(1, 1)`, `judge(99, 1)`의 결과는?

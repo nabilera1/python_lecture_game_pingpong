@@ -42,3 +42,5 @@ python -c "import pygame; print(pygame.version.ver)"
 | `ModuleNotFoundError: No module named 'pygame'` | pygame 미설치 또는 다른 파이썬에 설치 | `python -m pip install pygame` |
 | 핑퐁 한글이 □□로 보임 | 한글 글꼴 없음 | 맑은 고딕·애플SD고딕Neo·나눔고딕 중 하나 설치 (코드가 자동으로 찾음) |
 | `ModuleNotFoundError: No module named 'game'` | 다른 폴더에서 실행 | 핑퐁 폴더로 이동(`cd`) 후 `python main.py` |
+| ♥, ↑ 같은 기호를 어떻게 입력하지? | 키보드에 없는 특수 문자 | 한글 상태에서 ㅁ + 한자 키 (맥: Control + Command + Space), 또는 `"\u2665"`처럼 유니코드로 쓰기 (부록 06-5 참고) |
+| 특수 문자가 □나 ?로 보임 | 편집기·터미널 글꼴 문제 | IDLE: Options → Configure IDLE에서 '맑은 고딕' 등으로 글꼴 변경 |

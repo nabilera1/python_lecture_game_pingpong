@@ -81,7 +81,7 @@ if p.hp == 0:
     print("GAME OVER")
 ```
 
-**해설** `max(0, ...)`, `min(30, ...)`로 범위를 넘지 않게 막는 것을 **클램프(clamp)**라고 합니다. 패들이 화면 밖으로 못 나가게 하는 원리와 같습니다.
+**해설** `max(0, ...)`, `min(30, ...)`로 범위를 넘지 않게 막는 것을 **클램프**(clamp)라고 합니다. 패들이 화면 밖으로 못 나가게 하는 원리와 같습니다.
 
 정답 코드 파일: [ch13_test1.py 보기](https://github.com/nabilera1/python_lecture_game_pingpong/blob/main/source/solutions/ch13_test1.py) · [내려받기(Raw)](https://raw.githubusercontent.com/nabilera1/python_lecture_game_pingpong/main/source/solutions/ch13_test1.py)
 

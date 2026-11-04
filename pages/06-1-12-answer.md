@@ -94,7 +94,7 @@ while queue:
 print(dist[R - 1][C - 1])
 ```
 
-**해설** 게임 코드의 `seen` 집합 대신 **거리 표(2차원 리스트)**를 써서 '방문 여부'와 '거리'를 함께 기록했습니다. 이웃 칸의 거리 = 현재 칸 거리 + 1.
+**해설** 게임 코드의 `seen` 집합 대신 **거리 표**(2차원 리스트)를 써서 '방문 여부'와 '거리'를 함께 기록했습니다. 이웃 칸의 거리 = 현재 칸 거리 + 1.
 
 정답 코드 파일: [ch12_test2.py 보기](https://github.com/nabilera1/python_lecture_game_pingpong/blob/main/source/solutions/ch12_test2.py) · [내려받기(Raw)](https://raw.githubusercontent.com/nabilera1/python_lecture_game_pingpong/main/source/solutions/ch12_test2.py)
 

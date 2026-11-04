@@ -73,7 +73,7 @@ for _ in range(int(input())):
     print(parse_guess(input(), low, high))
 ```
 
-**해설** 검사 순서가 중요합니다. strip → isdigit → int → 범위 순서로 해야 `int()`에서 ValueError가 나지 않습니다. 빈 문자열의 `isdigit()`은 False입니다.
+**해설** 검사 순서가 중요합니다. strip → isdigit → int → 범위 순서로 해야 `int()`에서 ValueError가 나지 않습니다. 빈 문자열의 `isdigit()`은 False입니다. 참고로 `isdigit()`은 ①, ² 같은 특수 숫자도 True라서 `int()`에서 오류가 날 수 있습니다. 더 엄격하게 검사하려면 `isdecimal()`을 쓰거나 `try–except`를 함께 씁니다.
 
 정답 코드 파일: [ch18_test1.py 보기](https://github.com/nabilera1/python_lecture_game_pingpong/blob/main/source/solutions/ch18_test1.py) · [내려받기(Raw)](https://raw.githubusercontent.com/nabilera1/python_lecture_game_pingpong/main/source/solutions/ch18_test1.py)
 

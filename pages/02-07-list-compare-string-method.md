@@ -43,7 +43,7 @@ while True:                                   # 항상 참 → break 를 만나�
 | `split()` | `"3 5 7".split()` | `['3','5','7']` | 여러 값 입력 |
 | `lower()` / `upper()` | `"Y".lower()` | `"y"` | 대소문자 통일 |
 | `isdigit()` | `"12".isdigit()` | `True` | 숫자인지 검사 |
-| `isalpha()` | `"a".isalpha()` | `True` | 알파벳인지 검사 |
+| `isalpha()` | `"a".isalpha()` | `True` | 글자(문자)인지 검사 — 한글도 True |
 | `find(s)` | `"a@b.kr".find("@")` | `1` | 글자 위치 찾기 (없으면 -1) |
 
 메서드는 **원래 문자열을 바꾸지 않고 새 문자열을 돌려줍니다.** 그래서 `text = text.strip()`처럼 다시 저장해야 합니다.

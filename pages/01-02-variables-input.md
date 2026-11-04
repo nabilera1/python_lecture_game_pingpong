@@ -79,7 +79,7 @@ a, b = map(int, input().split())   # "3 5" → a=3, b=5
 
 1. 업다운 게임에 필요한 데이터 4가지를 변수 이름과 자료형으로 정리해 보세요.
 2. `print("3" * 3)`과 `print(3 * 3)`의 결과를 예상한 뒤 실행해 비교해 보세요.
-3. `2 ** 7`의 값을 구하고, 업다운 게임의 기회가 왜 7번인지 추측해 보세요. (힌트: 범위를 매번 절반으로 줄이면?)
+3. `2 ** 7`의 값을 구하고, 업다운 게임의 기회가 왜 7번인지 추측해 보세요. (힌트: 범위를 매번 절반으로 줄이면? 7번이면 최대 2⁷ − 1 = 127개 중에서 찾을 수 있습니다.)
 
 활동지: [ws02-variables-input.md](https://github.com/nabilera1/python_lecture_game_pingpong/blob/main/worksheets/ws02-variables-input.md)
 

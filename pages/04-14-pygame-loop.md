@@ -91,7 +91,7 @@ def main():
     game.run()      # 게임 루프 시작
 ```
 
-step1에서 한 파일에 모두 적었던 루프를, 핑퐁 완성본에서는 `Game` 클래스의 메서드 4개로 **분해**했습니다.
+step1에서 한 파일에 모두 적었던 루프를, 핑퐁 완성본에서는 `Game` 클래스의 메서드 3개(`handle_events`·`update`·`draw`)와 이를 반복 호출하는 `run()`으로 **분해**했습니다.
 
 ## FPS와 이동 거리 (물리 연계: 속력)
 
@@ -249,6 +249,7 @@ step1에서 한 파일에 모두 적었던 루프를, 핑퐁 완성본에서는 
 | 소스코드 `main.py` | [main.py 보기](https://github.com/nabilera1/python_lecture_game_pingpong/blob/main/source/pingpong/main.py) · [내려받기(Raw)](https://raw.githubusercontent.com/nabilera1/python_lecture_game_pingpong/main/source/pingpong/main.py) |
 | 소스코드 `game.py` | [game.py 보기](https://github.com/nabilera1/python_lecture_game_pingpong/blob/main/source/pingpong/game.py) · [내려받기(Raw)](https://raw.githubusercontent.com/nabilera1/python_lecture_game_pingpong/main/source/pingpong/game.py) |
 | 소스코드 `constants.py` | [constants.py 보기](https://github.com/nabilera1/python_lecture_game_pingpong/blob/main/source/pingpong/constants.py) · [내려받기(Raw)](https://raw.githubusercontent.com/nabilera1/python_lecture_game_pingpong/main/source/pingpong/constants.py) |
+| 소스코드 `requirements.txt` | [requirements.txt 보기](https://github.com/nabilera1/python_lecture_game_pingpong/blob/main/source/pingpong/requirements.txt) · [내려받기(Raw)](https://raw.githubusercontent.com/nabilera1/python_lecture_game_pingpong/main/source/pingpong/requirements.txt) |
 | 학습용 PPT | [14-pygame-loop.pptx 내려받기](https://github.com/nabilera1/python_lecture_game_pingpong/raw/main/slides/14-pygame-loop.pptx) |
 | 학생 활동지 | [ws14-pygame-loop.md](https://github.com/nabilera1/python_lecture_game_pingpong/blob/main/worksheets/ws14-pygame-loop.md) |
 | 코딩 테스트 1 정답 코드 | [ch14_test1.py 보기](https://github.com/nabilera1/python_lecture_game_pingpong/blob/main/source/solutions/ch14_test1.py) · [내려받기(Raw)](https://raw.githubusercontent.com/nabilera1/python_lecture_game_pingpong/main/source/solutions/ch14_test1.py) |

@@ -94,7 +94,7 @@ for _ in range(n):
     print(is_valid(input(), low, high))
 ```
 
-**해설** 숫자인지 먼저 검사한 뒤 int로 바꿔야 `int("abc")` 오류가 나지 않습니다. 검사 순서도 알고리즘의 일부입니다. 이 함수는 18차시 테스트 활동에서 다시 씁니다.
+**해설** 숫자인지 먼저 검사한 뒤 int로 바꿔야 `int("abc")` 오류가 나지 않습니다. 검사 순서도 알고리즘의 일부입니다. 18차시에서는 이 함수를 공백 제거까지 하는 `parse_guess()`로 발전시킵니다.
 
 정답 코드 파일: [ch08_test2.py 보기](https://github.com/nabilera1/python_lecture_game_pingpong/blob/main/source/solutions/ch08_test2.py) · [내려받기(Raw)](https://raw.githubusercontent.com/nabilera1/python_lecture_game_pingpong/main/source/solutions/ch08_test2.py)
 
