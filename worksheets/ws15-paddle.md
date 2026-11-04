@@ -1,6 +1,6 @@
 # 15차시 학생 활동지 · Paddle 클래스: 키 입력과 경계 처리
 
-> 텍스트 게임 프로젝트를 구현하면 배우는 파이썬 프로그래밍  
+> 텍스트 게임 프로젝트를 구현하며 배우는 파이썬 프로그래밍  
 > 단계: 구현 · 게임: 핑퐁 2단계 (step2_paddle_class.py) · paddle.py
 
 학번: ________  이름: ________  모둠: ________  날짜: ________
@@ -38,9 +38,9 @@ H=500, PH=90, speed=7, 처음 top=10
 
 ## 핵심 개념 빈칸 채우기
 
-1. ( ______ ) = 누른 순간 한 번 / get_pressed = 누르는 동안 계속
+1. 이벤트(KEYDOWN) = 누른 순간 한 번 / ( ______ ) = 누르는 동안 계속
 2. keys ( ______ ) 객체마다 다른 조작 키
-3. 경계 처리(clamp): rect.top ≥ 0, ( ______ ) ≤ 화면 높이
+3. 경계 처리(( ______ )): rect.top ≥ 0, rect.bottom ≤ 화면 높이
 4. 좌표 계산: 가운데 = ( ______ ) - 크기/2
 
 ## 자기 평가
@@ -58,5 +58,7 @@ ______________________________________________
 ______________________________________________
 
 ---
+
+© 김동균(현 김해수남고등학교 정보교사, 전 대구과학고등학교·대구SW마이스터고등학교 교사) · 수업·연수 목적의 비영리 활용 가능 · 소개 블로그: https://blog.naver.com/nabilera1/100020953719
 
 학습 자료: [위키독스 본문](https://github.com/nabilera1/python_lecture_game_pingpong/blob/main/pages/04-15-paddle.md) · PPT: [15-paddle.pptx](https://github.com/nabilera1/python_lecture_game_pingpong/raw/main/slides/15-paddle.pptx)

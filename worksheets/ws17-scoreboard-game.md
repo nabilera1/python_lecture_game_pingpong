@@ -1,6 +1,6 @@
 # 17차시 학생 활동지 · Scoreboard와 Game: 점수·승패·재시작으로 완성하기
 
-> 텍스트 게임 프로젝트를 구현하면 배우는 파이썬 프로그래밍  
+> 텍스트 게임 프로젝트를 구현하며 배우는 파이썬 프로그래밍  
 > 단계: 구현 · 게임: 핑퐁 완성본 (main.py · game.py · scoreboard.py)
 
 학번: ________  이름: ________  모둠: ________  날짜: ________
@@ -38,9 +38,9 @@ Game을 가운데에 두고 Game이 가진 객체들과 constants.py의 관계�
 
 ## 핵심 개념 빈칸 채우기
 
-1. ( ______ ) 점수 기억, winner()는 승자 또는 None
-2. ( ______ ) 이동 → 충돌 → 득점 → 승패 판정
-3. ( ______ ) 정렬 x = 중심 - 너비 // 2
+1. ( ______ ): 점수 기억, winner()는 승자 또는 None
+2. Game.update: 이동 → 충돌 → 득점 → ( ______ )
+3. ( ______ ) x = 중심 - 너비 // 2
 4. ( ______ ) 지휘만, 일은 각 객체가 (역할 분담)
 
 ## 자기 평가
@@ -58,5 +58,7 @@ ______________________________________________
 ______________________________________________
 
 ---
+
+© 김동균(현 김해수남고등학교 정보교사, 전 대구과학고등학교·대구SW마이스터고등학교 교사) · 수업·연수 목적의 비영리 활용 가능 · 소개 블로그: https://blog.naver.com/nabilera1/100020953719
 
 학습 자료: [위키독스 본문](https://github.com/nabilera1/python_lecture_game_pingpong/blob/main/pages/04-17-scoreboard-game.md) · PPT: [17-scoreboard-game.pptx](https://github.com/nabilera1/python_lecture_game_pingpong/raw/main/slides/17-scoreboard-game.pptx)
